@@ -14,17 +14,41 @@ public class FlightService implements FlightServiceInterface {
     @Override
     public void showAllFlights() {
         List<Flight> allFlightsList = new ArrayList<>();
+
         allFlightsList = flightDAO.getAllFlights();
 
         for (Flight flight : allFlightsList) {
             System.out.println(flight);
         }
-
     }
 
     @Override
     public void showFlightById(String flightId) {
-
-
+        Flight flight = flightDAO.getFlightById(flightId);
+        if (flight != null) {
+            System.out.println(flight);
+        } else {
+            System.out.println("No such flight!");
+        }
     }
+
+    @Override
+    public List<Flight> findFlightsForBooking(String city, String date, String quantityOfTickets) {
+        List<Flight> resultFlights = flightDAO.findFlightsForBooking(city, date, quantityOfTickets);
+        if (resultFlights.size() != 0) {
+            for (Flight flight : resultFlights) {
+                System.out.println(flight);
+            }
+        } else {
+            System.out.println("No such flights!");
+
+        }
+
+        return resultFlights;
+    }
+
+
 }
+
+
+

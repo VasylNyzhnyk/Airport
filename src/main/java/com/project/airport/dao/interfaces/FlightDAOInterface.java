@@ -9,4 +9,9 @@ public interface FlightDAOInterface {
     List<Flight> getAllFlights();
 
     Flight getFlightById (String flightId);
+
+    List<Flight> findFlightsForBooking(String city, String date, String quantityOfTickets);
+
+
+
 }
