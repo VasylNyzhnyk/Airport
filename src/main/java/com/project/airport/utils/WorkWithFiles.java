@@ -28,10 +28,6 @@ public class WorkWithFiles {
             flightsList.add(new Flight(words[0], words[1], words[2], words[3], words[4]));
         }
 
-        /*for (Flight flight : flightsList) {
-            System.out.println(flight);
-        }*/
-
         return flightsList;
     }
 }

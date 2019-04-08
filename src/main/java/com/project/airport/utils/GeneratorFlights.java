@@ -1,8 +1,12 @@
 package com.project.airport.utils;
-
 import com.project.airport.model.Flight;
-
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GeneratorFlights {
@@ -30,7 +34,7 @@ public class GeneratorFlights {
         return (int) (Math.random() * max);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         List<String> listTime = new ArrayList<>();
         listTime.add("1:50");
         listTime.add("2:10");
@@ -55,15 +59,16 @@ public class GeneratorFlights {
         listNumberOfSeats.add("45");
         listNumberOfSeats.add("9");
         List<String> listFlight = new ArrayList<>();
-        for (int i = 0; i < 10000; i++) {
-            String s = listCity.get(rnd(9)) + "   " + listTime.get(rnd(6))
-                    + "    " + listData.get(rnd(4)) + "  " + listNumberOfSeats.get(rnd(6));
+        for (int i = 0; i <=1000; i++) {
+            int j = 1;
+
+            String s = j +"\t"+listCity.get(rnd(9)) + "\t" + listTime.get(rnd(6))
+                    + "\t" + listData.get(rnd(4)) + "\t" + listNumberOfSeats.get(rnd(6));
+          j+=1;
             listFlight.add(s);
         }
-        for (String s : listFlight) {
-            System.out.println(s);
-        }
-
+        Files.write(Paths.get("D://IdeaProjects//Airport//src//main//java//com" +
+                "//project//airport//ListPlanes.txt"), listFlight, StandardOpenOption.CREATE);
     }
 
 }
