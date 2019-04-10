@@ -47,6 +47,20 @@ public class FlightService implements FlightServiceInterface {
         return resultFlights;
     }
 
+    @Override
+    public List<Flight> flightBooking(String firstName, String lastName, String numberOfSeats) {
+        List<Flight> resultBookingFlight = flightDAO.flightBooking(firstName,lastName,numberOfSeats);
+        if (resultBookingFlight.size() != 0) {
+            for (Flight flight : resultBookingFlight) {
+                System.out.println(flight);
+            }
+        } else {
+            System.out.println("Booking is not completed!");
+
+        }
+        return resultBookingFlight;
+    }
+
 
 }
 

@@ -42,12 +42,20 @@ public class FlightDAO implements FlightDAOInterface {
         for (Flight flight : allFlights) {
             if (flight.getCity().equals(city)
                     && flight.getDate().equals(date)
-                    && Integer.parseInt(flight.getNumberOfSeats())>= Integer.parseInt(quantityOfTickets)){
+                    && Integer.parseInt(flight.getNumberOfSeats())
+                    >= Integer.parseInt(quantityOfTickets)){
                resultFlights.add(flight);
 
             }
         }
         return resultFlights;
+    }
+
+    @Override
+    public List<Flight> flightBooking(String firstName, String lastName) {
+        List<Flight> resultBookingFlight = new ArrayList<>();
+
+        return resultBookingFlight;
     }
 
 

@@ -1,5 +1,7 @@
 package com.project.airport.utils;
+
 import com.project.airport.model.Flight;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -42,7 +44,7 @@ public class GeneratorFlights {
         listTime.add("3:10");
         listTime.add("2:30");
         listTime.add("4:00");
-        int f = (int) (Math.random()*6);
+        int f = (int) (Math.random() * 6);
         List<String> listCity = randomFlightList();
 
         List<String> listData = new ArrayList<>();
@@ -59,16 +61,14 @@ public class GeneratorFlights {
         listNumberOfSeats.add("45");
         listNumberOfSeats.add("9");
         List<String> listFlight = new ArrayList<>();
-        for (int i = 0; i <=1000; i++) {
-            int j = 1;
-
-            String s = j +"\t"+listCity.get(rnd(9)) + "\t" + listTime.get(rnd(6))
+        int j = 1;
+        for (int i = 0; i <= 1000; i++) {
+            String s = j + "\t" + listCity.get(rnd(9)) + "\t" + listTime.get(rnd(6))
                     + "\t" + listData.get(rnd(4)) + "\t" + listNumberOfSeats.get(rnd(6));
-          j+=1;
+            j += 1;
             listFlight.add(s);
         }
         Files.write(Paths.get("D://IdeaProjects//Airport//src//main//java//com" +
                 "//project//airport//ListPlanes.txt"), listFlight, StandardOpenOption.CREATE);
     }
-
 }
