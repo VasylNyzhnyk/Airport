@@ -55,7 +55,7 @@ public class FlightService implements FlightServiceInterface {
                 System.out.println(flight);
             }
         } else {
-            System.out.println("Booking is not completed!");
+            System.out.println("BookingDAO is not completed!");
 
         }
         return resultBookingFlight;

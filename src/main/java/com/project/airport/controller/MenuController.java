@@ -42,6 +42,9 @@ public class MenuController {
                 String numberOfSeats = scanner.nextLine();
                 flightService.flightBooking(firstName,lastName,numberOfSeats);
 
+
+
+
                 break;
             case "4":
                 System.out.println("You chose: Cancel reservation ");
