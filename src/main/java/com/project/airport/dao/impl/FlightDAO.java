@@ -27,7 +27,7 @@ public class FlightDAO implements FlightDAOInterface {
         List<Flight> allFlights = getAllFlights();
 
         for (Flight flight : allFlights) {
-            if(flight.getId().equals(flightId)){
+            if (flight.getId().equals(flightId)) {
                 resultFlight = flight;
             }
         }
@@ -43,20 +43,20 @@ public class FlightDAO implements FlightDAOInterface {
             if (flight.getCity().equals(city)
                     && flight.getDate().equals(date)
                     && Integer.parseInt(flight.getNumberOfSeats())
-                    >= Integer.parseInt(quantityOfTickets)){
-               resultFlights.add(flight);
+                    >= Integer.parseInt(quantityOfTickets)) {
+                resultFlights.add(flight);
 
             }
         }
         return resultFlights;
     }
 
-    @Override
+  /*  @Override
     public List<Flight> flightBooking(String firstName, String lastName) {
         List<Flight> resultBookingFlight = new ArrayList<>();
 
         return resultBookingFlight;
-    }
+    }*/
 
 
 }
