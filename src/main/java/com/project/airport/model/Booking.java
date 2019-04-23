@@ -3,7 +3,7 @@ package com.project.airport.model;
 public class Booking {
     private String id;
     private String passengerId;
-    private String bookingId;
+    private String flightId;
 
     public Booking() {
     }
@@ -11,7 +11,7 @@ public class Booking {
     public Booking(String id, String passengerId, String bookingId) {
         this.id = id;
         this.passengerId = passengerId;
-        this.bookingId = bookingId;
+        this.flightId = bookingId;
     }
 
     public String getId() {
@@ -30,12 +30,12 @@ public class Booking {
         this.passengerId = passengerId;
     }
 
-    public String getBookingId() {
-        return bookingId;
+    public String getFlightId() {
+        return flightId;
     }
 
-    public void setBookingId(String bookingId) {
-        this.bookingId = bookingId;
+    public void setFlightId(String flightId) {
+        this.flightId = flightId;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Booking {
         return "BookingDAO{" +
                 "id='" + id + '\'' +
                 ", passengerId='" + passengerId + '\'' +
-                ", bookingId='" + bookingId + '\'' +
+                ", flightId='" + flightId + '\'' +
                 '}';
     }
 }

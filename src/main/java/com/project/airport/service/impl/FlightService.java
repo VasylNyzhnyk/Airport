@@ -48,6 +48,26 @@ public class FlightService implements FlightServiceInterface {
     }
 
     @Override
+    public void showTodayFlights(String todayDate) {
+        List<Flight> allFlightsList = new ArrayList<>();
+
+        allFlightsList = flightDAO.getAllFlights();
+
+        for (Flight flight : allFlightsList) {
+            if(flight.getDate().equals(todayDate)) {
+                System.out.println(flight);
+            }
+        }
+    }
+
+    @Override
+    public Flight getFlightById(String idFlight) {
+        Flight flight = flightDAO.getFlightById(idFlight);
+
+        return flight;
+    }
+
+    /*@Override
     public List<Flight> flightBooking(String firstName, String lastName, String numberOfSeats) {
         List<Flight> resultBookingFlight = flightDAO.flightBooking(firstName,lastName,numberOfSeats);
         if (resultBookingFlight.size() != 0) {
@@ -59,7 +79,7 @@ public class FlightService implements FlightServiceInterface {
 
         }
         return resultBookingFlight;
-    }
+    }*/
 
 
 }

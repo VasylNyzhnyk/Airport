@@ -11,6 +11,10 @@ public interface FlightServiceInterface {
     void showFlightById(String flightId);
 
     List<Flight> findFlightsForBooking(String city, String date, String quantityOfTickets);
+
+    void showTodayFlights(String todayDate);
+
+    Flight getFlightById(String idFlight);
     //List<Flight> flightBooking(String firstName, String lastName, String numberOfSeats);
 
 

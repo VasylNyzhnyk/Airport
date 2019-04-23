@@ -1,13 +1,37 @@
 package com.project.airport.controller;
 
 import com.project.airport.Application;
+import com.project.airport.model.Booking;
+import com.project.airport.model.BookingRequest;
+import com.project.airport.model.Flight;
+import com.project.airport.model.Passenger;
 import com.project.airport.service.impl.FlightService;
 import com.sun.xml.internal.bind.v2.TODO;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuController {
+
+
+    private static String obtainCurrentDateString() {
+        String pattern = "dd.MM";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+        String date = simpleDateFormat.format(new Date());
+        //System.out.println("TODAY-DATE:" + date);
+        return date;
+    }
+
+
+    //public static String todayDate = "12.04";
+    public static String todayDate = obtainCurrentDateString();
+    //Date date;
 
     public static boolean processUserSelection(String chosenItem) throws IOException {
         Scanner scanner = new Scanner(System.in);
@@ -18,7 +42,10 @@ public class MenuController {
         switch (chosenItem) {
             case "1":
                 System.out.println("You chose: Online scoreboard");
-                flightService.showAllFlights();
+                //flightService.showAllFlights();
+                //System.out.println("----------");
+                System.out.println("Today is:" + todayDate);
+                flightService.showTodayFlights(todayDate);
                 break;
             case "2":
                 System.out.println("You chose: Flight information ");
@@ -32,17 +59,26 @@ public class MenuController {
                 String city = scanner.nextLine();
                 String data = scanner.nextLine();
                 String quantityOfTickets = scanner.nextLine();
-                flightService.findFlightsForBooking(city,data,quantityOfTickets);
+                flightService.findFlightsForBooking(city, data, quantityOfTickets);
                 System.out.println("Choose a flight. Enter the id");
-                String idFlight  = scanner.nextLine();
+                String idFlight = scanner.nextLine();
                 flightService.showFlightById(idFlight);
-                System.out.println("Enter: firstName and lastName to complete the booking...");
-                String firstName = scanner.nextLine();
-                String lastName = scanner.nextLine();
-                String numberOfSeats = scanner.nextLine();
-                flightService.flightBooking(firstName,lastName,numberOfSeats);
+                Flight requestedFlight = flightService.getFlightById(idFlight);
 
+                List<Passenger> passaengersForBooking = new ArrayList<>(Integer.parseInt(quantityOfTickets));
+                for (int i = 1; i <= Integer.parseInt(quantityOfTickets); i++) {
+                    System.out.println("Enter: First Name of Passenger" + i);
+                    String firstName = scanner.nextLine();
 
+                    System.out.println("Enter: Last Name of Passenger" + i);
+                    String lastName = scanner.nextLine();
+
+                    Passenger passenger = new Passenger("1",firstName,lastName);
+                    passaengersForBooking.add(passenger);
+                }
+                BookingRequest bookingRequest = new BookingRequest(requestedFlight,passaengersForBooking);
+                System.out.println(bookingRequest);
+                //flightService.flightBooking(firstName,lastName,numberOfSeats);
 
 
                 break;

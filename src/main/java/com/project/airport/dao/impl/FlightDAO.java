@@ -51,6 +51,11 @@ public class FlightDAO implements FlightDAOInterface {
         return resultFlights;
     }
 
+    @Override
+    public List<Flight> flightBooking(String firstName, String lastName, String numberOfSeats) {
+        return null;
+    }
+
   /*  @Override
     public List<Flight> flightBooking(String firstName, String lastName) {
         List<Flight> resultBookingFlight = new ArrayList<>();

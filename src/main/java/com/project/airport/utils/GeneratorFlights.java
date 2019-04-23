@@ -47,11 +47,23 @@ public class GeneratorFlights {
         int f = (int) (Math.random() * 6);
         List<String> listCity = randomFlightList();
 
-        List<String> listData = new ArrayList<>();
-        listData.add("10.04");
-        listData.add("11.04");
-        listData.add("10.04");
-        listData.add("12.04");
+        List<String> listDay = new ArrayList<>();
+        for (int i = 1; i <= 28; i++) {
+            if (i < 10) {
+                listDay.add("0" + i);
+            } else {
+                listDay.add(String.valueOf(i));
+            }
+        }
+
+        List<String> listMonth = new ArrayList<>();
+        for (int i = 1; i <= 12; i++) {
+            if (i < 10) {
+                listMonth.add("0" + i);
+            } else {
+                listMonth.add(String.valueOf(i));
+            }
+        }
 
         List<String> listNumberOfSeats = new ArrayList<>();
         listNumberOfSeats.add("79");
@@ -64,7 +76,7 @@ public class GeneratorFlights {
         int j = 1;
         for (int i = 0; i <= 1000; i++) {
             String s = j + "\t" + listCity.get(rnd(9)) + "\t" + listTime.get(rnd(6))
-                    + "\t" + listData.get(rnd(4)) + "\t" + listNumberOfSeats.get(rnd(6));
+                    + "\t" + listDay.get(rnd(28)) + "." + listMonth.get(rnd(12)) + "\t" + listNumberOfSeats.get(rnd(6));
             j += 1;
             listFlight.add(s);
         }
