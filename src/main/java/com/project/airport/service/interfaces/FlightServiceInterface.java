@@ -15,6 +15,13 @@ public interface FlightServiceInterface {
     void showTodayFlights(String todayDate);
 
     Flight getFlightById(String idFlight);
+
+    void cancelBookingByIdPassenger(String listOfPassengers);
+
+
+
+
+
     //List<Flight> flightBooking(String firstName, String lastName, String numberOfSeats);
 
 

@@ -1,11 +1,14 @@
 package com.project.airport.controller;
 
 import com.project.airport.Application;
+import com.project.airport.dao.impl.PassengerDAO;
 import com.project.airport.model.Booking;
 import com.project.airport.model.BookingRequest;
 import com.project.airport.model.Flight;
 import com.project.airport.model.Passenger;
+import com.project.airport.service.impl.BookingService;
 import com.project.airport.service.impl.FlightService;
+import com.project.airport.service.impl.PassengerServise;
 import com.sun.xml.internal.bind.v2.TODO;
 
 import javax.xml.crypto.Data;
@@ -37,13 +40,13 @@ public class MenuController {
         Scanner scanner = new Scanner(System.in);
 
         FlightService flightService = new FlightService();
+        PassengerServise passengerServise = new PassengerServise();
+        BookingService bookingService = new BookingService();
 
         boolean isExitChosen = false;
         switch (chosenItem) {
             case "1":
                 System.out.println("You chose: Online scoreboard");
-                //flightService.showAllFlights();
-                //System.out.println("----------");
                 System.out.println("Today is:" + todayDate);
                 flightService.showTodayFlights(todayDate);
                 break;
@@ -65,7 +68,7 @@ public class MenuController {
                 flightService.showFlightById(idFlight);
                 Flight requestedFlight = flightService.getFlightById(idFlight);
 
-                List<Passenger> passaengersForBooking = new ArrayList<>(Integer.parseInt(quantityOfTickets));
+                List<Passenger> passengersForBooking = new ArrayList<>(Integer.parseInt(quantityOfTickets));
                 for (int i = 1; i <= Integer.parseInt(quantityOfTickets); i++) {
                     System.out.println("Enter: First Name of Passenger" + i);
                     String firstName = scanner.nextLine();
@@ -73,17 +76,30 @@ public class MenuController {
                     System.out.println("Enter: Last Name of Passenger" + i);
                     String lastName = scanner.nextLine();
 
-                    Passenger passenger = new Passenger("1",firstName,lastName);
-                    passaengersForBooking.add(passenger);
+                    Passenger passenger = new Passenger("1", firstName, lastName);
+                    passengersForBooking.add(passenger);
                 }
-                BookingRequest bookingRequest = new BookingRequest(requestedFlight,passaengersForBooking);
+                BookingRequest bookingRequest = new BookingRequest(requestedFlight, passengersForBooking);
                 System.out.println(bookingRequest);
                 //flightService.flightBooking(firstName,lastName,numberOfSeats);
+
+                //TODO
+                //Add passengers to "ListPassengers.txt"(забрать всех пасажиров из файла, добавить нового, перезаписать файл)
+                //Add booking to "ListBookings.txt"
+                //Update Flight, уменьшить число свободных мест.
 
 
                 break;
             case "4":
                 System.out.println("You chose: Cancel reservation ");
+                //System.out.println("Enter your full name");
+                //String firstName = scanner.nextLine();
+                //String lastName = scanner.nextLine();
+                passengerServise.showAllPassengers();
+               // System.out.println("Your flights:");
+                //System.out.println("Enter the flight ID");
+                bookingService.showAllBookings();
+
                 break;
             case "5":
                 System.out.println("You chose: Exit ");

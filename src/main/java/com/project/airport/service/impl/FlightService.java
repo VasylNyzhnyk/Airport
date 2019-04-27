@@ -2,6 +2,7 @@ package com.project.airport.service.impl;
 
 import com.project.airport.dao.impl.FlightDAO;
 import com.project.airport.model.Flight;
+import com.project.airport.model.Passenger;
 import com.project.airport.service.interfaces.FlightServiceInterface;
 
 import java.util.ArrayList;
@@ -65,6 +66,18 @@ public class FlightService implements FlightServiceInterface {
         Flight flight = flightDAO.getFlightById(idFlight);
 
         return flight;
+    }
+
+    @Override
+    public void cancelBookingByIdPassenger(String listOfPassengers) {
+        Passenger passenger = new Passenger();
+        //List<Flight> flightList = new ArrayList<Flight>();
+        /*for (int i = 0; i < listOfPassengers.size(); i++) {
+            if(passenger.getIdPasssenger().equals(listOfPassengers.get(i))){
+                listOfPassengers.remove(i);
+                System.out.println(listOfPassengers);
+            }
+        }*/
     }
 
     /*@Override
