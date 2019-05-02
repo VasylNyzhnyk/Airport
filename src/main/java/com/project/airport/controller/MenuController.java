@@ -80,25 +80,32 @@ public class MenuController {
                     passengersForBooking.add(passenger);
                 }
                 BookingRequest bookingRequest = new BookingRequest(requestedFlight, passengersForBooking);
+
                 System.out.println(bookingRequest);
-                //flightService.flightBooking(firstName,lastName,numberOfSeats);
+                System.out.println();
+
+                //Add passengers to "ListPassengers.txt"(забрать всех пасажиров из файла, добавить нового, перезаписать файл)
+                List<Passenger> newPassengers = bookingRequest.getListOfPassengers();
+                System.out.println(newPassengers);
+                List<String> newPassengersIds = passengerServise.addListOfPassengers(newPassengers);
+                System.out.println(newPassengersIds);
+                //BookinggID+PassengerID+FlightID(Table)
+
+                for (int i = 0; i < newPassengers.size(); i++) {
+                    Booking newBooking = new Booking("1",newPassengersIds.get(i), idFlight);
+                    System.out.println(newBooking);
+                }
 
                 //TODO
-                //Add passengers to "ListPassengers.txt"(забрать всех пасажиров из файла, добавить нового, перезаписать файл)
                 //Add booking to "ListBookings.txt"
                 //Update Flight, уменьшить число свободных мест.
-
 
                 break;
             case "4":
                 System.out.println("You chose: Cancel reservation ");
-                //System.out.println("Enter your full name");
-                //String firstName = scanner.nextLine();
-                //String lastName = scanner.nextLine();
                 passengerServise.showAllPassengers();
-               // System.out.println("Your flights:");
-                //System.out.println("Enter the flight ID");
                 bookingService.showAllBookings();
+
 
                 break;
             case "5":

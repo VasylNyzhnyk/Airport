@@ -8,6 +8,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +78,23 @@ public class WorkWithFiles {
             bookingsList.add(new Booking(words[0], words[1], words[2]));
         }
         return bookingsList;
+    }
+
+
+    public static void writeListOfPassengerToFile(List<Passenger> listOfPassengers) throws IOException {
+
+        List<String> listOfStringPassenger = new ArrayList<>();
+
+        for (int i = 0; i < listOfPassengers.size(); i++) {
+            Passenger passenger = listOfPassengers.get(i);
+
+            String s = passenger.getIdPasssenger() + "\t" + passenger.getFirstName() + "\t" + passenger.getLastName();
+            listOfStringPassenger.add(s);
+            System.out.println(s);
+        }
+        Files.write(Paths.get("D://IdeaProjects//Airport//src//main//java//com" +
+                "//project//airport//resources//ListPassengers.txt"), listOfStringPassenger, StandardOpenOption.CREATE);
+
     }
 
 }
