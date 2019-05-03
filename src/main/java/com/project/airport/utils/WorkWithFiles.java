@@ -97,4 +97,20 @@ public class WorkWithFiles {
 
     }
 
+    public static void writeListOfBookingToFile(List<Booking> listOfBooking) throws IOException {
+
+        List<String> listOfStringBooking = new ArrayList<>();
+
+        for (int i = 0; i < listOfBooking.size(); i++) {
+            Booking booking = listOfBooking.get(i);
+
+            String s = booking.getId() + "\t" + booking.getPassengerId() + "\t" + booking.getFlightId();
+            listOfBooking.add(s);
+            System.out.println(s);
+        }
+        Files.write(Paths.get("D://IdeaProjects//Airport//src//main//java//com" +
+                "//project//airport//resources//ListBookings.txt"), listOfStringBooking, StandardOpenOption.CREATE);
+
+    }
+
 }
