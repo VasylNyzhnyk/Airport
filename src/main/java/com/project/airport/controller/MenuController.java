@@ -13,6 +13,9 @@ import com.sun.xml.internal.bind.v2.TODO;
 
 import javax.xml.crypto.Data;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -91,10 +94,23 @@ public class MenuController {
                 System.out.println(newPassengersIds);
                 //BookinggID+PassengerID+FlightID(Table)
 
+                List<String> listOfStringBooking = new ArrayList<>();
+
                 for (int i = 0; i < newPassengers.size(); i++) {
-                    Booking newBooking = new Booking("1",newPassengersIds.get(i), idFlight);
+                    Booking newBooking = new Booking("1", newPassengersIds.get(i), idFlight);
+                    // List<String> listOfStringBooking = new ArrayList<>();
                     System.out.println(newBooking);
-                }
+                    String s1 = newBooking.getId() + "\t" + newBooking.getPassengerId()
+                            + "\t" + newBooking.getFlightId();
+                    listOfStringBooking.add(s1);
+                    System.out.println(s1);
+
+
+                Files.write(Paths.get("D://IdeaProjects//Airport//src//main//java//com" +
+                                "//project//airport//resources//ListBookings.txt"),
+                        listOfStringBooking, StandardOpenOption.CREATE);
+        }
+
 
                 //TODO
                 //Add booking to "ListBookings.txt"
