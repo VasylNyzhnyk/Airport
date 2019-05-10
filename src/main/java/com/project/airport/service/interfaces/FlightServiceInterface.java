@@ -17,6 +17,9 @@ public interface FlightServiceInterface {
     Flight getFlightById(String idFlight);
 
     void cancelBookingByIdPassenger(String listOfPassengers);
+    void decreaseNumberOfSeats(int numberOfPassengers,String flightId);
+    void increaseNumberOfSeats(int numberOfPassengers,String flightId);
+
 
 
 

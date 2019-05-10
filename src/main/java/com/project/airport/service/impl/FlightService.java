@@ -55,7 +55,7 @@ public class FlightService implements FlightServiceInterface {
         allFlightsList = flightDAO.getAllFlights();
 
         for (Flight flight : allFlightsList) {
-            if(flight.getDate().equals(todayDate)) {
+            if (flight.getDate().equals(todayDate)) {
                 System.out.println(flight);
             }
         }
@@ -71,28 +71,34 @@ public class FlightService implements FlightServiceInterface {
     @Override
     public void cancelBookingByIdPassenger(String listOfPassengers) {
         Passenger passenger = new Passenger();
-        //List<Flight> flightList = new ArrayList<Flight>();
-        /*for (int i = 0; i < listOfPassengers.size(); i++) {
-            if(passenger.getIdPasssenger().equals(listOfPassengers.get(i))){
-                listOfPassengers.remove(i);
-                System.out.println(listOfPassengers);
-            }
-        }*/
     }
 
-    /*@Override
-    public List<Flight> flightBooking(String firstName, String lastName, String numberOfSeats) {
-        List<Flight> resultBookingFlight = flightDAO.flightBooking(firstName,lastName,numberOfSeats);
-        if (resultBookingFlight.size() != 0) {
-            for (Flight flight : resultBookingFlight) {
-                System.out.println(flight);
-            }
-        } else {
-            System.out.println("BookingDAO is not completed!");
+    @Override
+    public void decreaseNumberOfSeats(int numberOfPassengers, String flightId) {
 
+        Flight oldFlight = getFlightById(flightId);
+        int oldNumberOfSeats = Integer.parseInt(oldFlight.getNumberOfSeats());
+        System.out.println("Old number of seats=" + oldNumberOfSeats);
+
+        int newNumberOfSeats = oldNumberOfSeats - numberOfPassengers;
+
+        List<Flight> allFlightsList = new ArrayList<>();
+
+        allFlightsList = flightDAO.getAllFlights();
+
+        for (Flight flight : allFlightsList) {
+            if (flight.getId().equals(flightId)) {
+                flight.setNumberOfSeats(String.valueOf(newNumberOfSeats));
+            }
         }
-        return resultBookingFlight;
-    }*/
+
+        flightDAO.addListOfFlights(allFlightsList);
+    }
+
+    @Override
+    public void increaseNumberOfSeats(int numberOfPassengers, String flightId) {
+
+    }
 
 
 }

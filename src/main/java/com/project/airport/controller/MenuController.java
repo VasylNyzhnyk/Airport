@@ -83,33 +83,31 @@ public class MenuController {
                     passengersForBooking.add(passenger);
                 }
                 BookingRequest bookingRequest = new BookingRequest(requestedFlight, passengersForBooking);
-
                 System.out.println(bookingRequest);
                 System.out.println();
-
                 //Add passengers to "ListPassengers.txt"(забрать всех пасажиров из файла, добавить нового, перезаписать файл)
                 List<Passenger> newPassengers = bookingRequest.getListOfPassengers();
                 System.out.println(newPassengers);
                 List<String> newPassengersIds = passengerServise.addListOfPassengers(newPassengers);
+                System.out.println("-------------------------------newPassengersIds------------------------");
                 System.out.println(newPassengersIds);
-                //BookinggID+PassengerID+FlightID(Table)
-
-                List<String> listOfStringBooking = new ArrayList<>();
-
-                for (int i = 0; i < newPassengers.size(); i++) {
-                    Booking newBooking = new Booking("1", newPassengersIds.get(i), idFlight);
-                    // List<String> listOfStringBooking = new ArrayList<>();
-                    System.out.println(newBooking);
-                    String s1 = newBooking.getId() + "\t" + newBooking.getPassengerId()
-                            + "\t" + newBooking.getFlightId();
-                    listOfStringBooking.add(s1);
-                    System.out.println(s1);
 
 
-                Files.write(Paths.get("D://IdeaProjects//Airport//src//main//java//com" +
-                                "//project//airport//resources//ListBookings.txt"),
-                        listOfStringBooking, StandardOpenOption.CREATE);
-        }
+                //Add bookings to "ListBookings.txt"
+
+                List<Booking>newBookingsList = new ArrayList<>();
+                for (int i = 0; i < newPassengersIds.size(); i++) {
+                    Booking booking = new Booking("1",newPassengersIds.get(i),idFlight);
+                    newBookingsList.add(booking);
+                }
+
+                System.out.println("--------newBookingsList-------------");
+                System.out.println(newBookingsList);
+
+
+                List<String> newBookingsIds = bookingService.addListOfBookings(newBookingsList);
+                System.out.println("-------------------------------newBookingIds------------------------");
+                System.out.println(newBookingsIds);
 
 
                 //TODO
@@ -119,8 +117,10 @@ public class MenuController {
                 break;
             case "4":
                 System.out.println("You chose: Cancel reservation ");
-                passengerServise.showAllPassengers();
+                //passengerServise.showAllPassengers();
                 bookingService.showAllBookings();
+
+
 
 
                 break;
